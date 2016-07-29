@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xukaiqiang.blog.tags.mapper.TagsMapper">
+	<resultMap type="com.xukaiqiang.blog.model.tags.Tags" id="tagsResultMap">
+		<result property="id" column="id" />
+		<result property="name" column="name" />
+		<result property="num" column="num" />
+	</resultMap>
+
+	<sql id="table_columns">
+		id,
+		name,
+		num
+	</sql>
+	<sql id="entity_properties">
+		#{id},
+		#{name},
+		#{num}
+	</sql>
+	<sql id="batch_entity_properties">
+		#{item.id},
+		#{item.name},
+		#{item.num}
+	</sql>
+
+	<!-- 适用于主键自增类型 -->
+	<insert id="insert" parameterType="com.xukaiqiang.blog.model.tags.Tags"
+		useGeneratedKeys="true" keyProperty="id">
+		insert into tags(
+		<include refid="table_columns" />
+		)
+		values (
+		<include refid="entity_properties" />
+		)
+	</insert>
+
+	<!-- 批量添加 适用于主键自增类型 不支持返回主键 -->
+	<insert id="batchInsert" parameterType="java.util.List"
+		useGeneratedKeys="true">
+		insert into tags(
+		<include refid="table_columns" />
+		)
+		values
+		<foreach item="item" collection="list" separator=",">
+			(
+			<include refid="entity_properties" />
+			)
+		</foreach>
+	</insert>
+
+	<!--根据主键删除 -->
+	<delete id="deleteById">
+		delete from tbl_users
+		where id = #{id}
+	</delete>
+
+	<!-- 根据ID批量删除 -->
+	<delete id="deleteByIds">
+		delete from tags
+		where id in
+		<foreach item="item" collection="array" open="(" separator=","
+			close=")">
+			#{item}
+		</foreach>
+	</delete>
+
+	<update id="update" parameterType="com.xukaiqiang.blog.model.tags.Tags">
+		update tags
+		<trim prefix="set" suffixOverrides=",">
+			<if test="name != null and name != ''">name = #{name},</if>
+			<if test="num != null and num != ''">num = #{num},</if>
+		</trim>
+		<where>id = #{id}</where>
+	</update>
+
+	<select id="findById" resultMap="tagsResultMap" parameterType="String">
+		select
+		<include refid="table_columns" />
+		from tags
+		where id = #{id}
+	</select>
+
+	<select id="queryAll" resultMap="tagsResultMap">
+		select
+		<include refid="table_columns" />
+		from tags
+	</select>
+
+	<!-- 使用like用法：columnName like concat('%',#columnName#,'%') -->
+	<sql id="page_where">
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="name != null and name != ''">and name = #{name}</if>
+			<if test="num != null and num != ''">and num = #{num}</if>
+		</trim>
+	</sql>
+
+	<select id="page" resultMap="tagsResultMap"
+		parameterType="com.xukaiqiang.blog.model.tags.Tags">
+		select
+		<include refid="table_columns" />
+		from tags
+		<include refid="page_where" />
+		limit #{firstIndex},#{pageSize}
+	</select>
+
+	<select id="pageCount" resultType="int"
+		parameterType="com.xukaiqiang.blog.model.tags.Tags">
+		select count(id) from tags
+		<include refid="page_where" />
+	</select>
+
+	<!-- 其他自定义SQL -->
+	<!-- 批量添加 适用于主键自增类型 不支持返回主键 -->
+	<insert id="batchInsertOnDuplicateUpdate" parameterType="java.util.Map"
+		useGeneratedKeys="true">
+		insert into tags(
+		<include refid="table_columns" />
+		)
+		values
+		<foreach item="item" collection="tagsList" separator=",">
+			(
+			<include refid="batch_entity_properties" />
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE num=num+1
+	</insert>
+	<!-- 根据标签数组，查询插入后，这些标签的tagId(返回一个链表)： -->
+	<select id="selectTagIds" resultType="com.xukaiqiang.blog.model.tags.Tags">
+		SELECT
+		id as id
+		FROM tags
+		WHERE name
+		in
+		<foreach item="item" index="index" collection="tagsArray"
+			open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</select>
+	
+	<update id="subUpdate" parameterType="int">
+			update   tags 
+			set   num=num-1
+			where  id=#{id}
+	</update>
+	
+	<delete id="delete0num">
+		delete  from tags 
+		where num=0;
+	</delete>
+</mapper>

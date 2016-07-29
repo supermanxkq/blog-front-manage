@@ -1,0 +1,51 @@
+
+
+.pages {
+    clear: both;
+    margin: 20px 0 10px;
+    text-align: center
+}
+
+.pages li {
+    display: inline-block;
+    *display: inline;
+    margin: 0 5px;
+    border: 1px solid #999;
+    background-color: #fff;
+    border-radius: 3px
+}
+
+.pages li a, .pages li span {
+    display: inline-block;
+    padding: 3px 10px;
+    color: #333;
+    font-size: 12px;
+    font-size: 1.2rem
+}
+
+.pages li:hover, .pages li.active {
+    background-color: #4199c3;
+    border: 1px solid #4199c3;
+    cursor: pointer
+}
+
+.pages li:hover a, .pages li.active a {
+    color: #fff;
+    text-decoration: none
+}
+
+.pages li.disabled {
+    border: 1px solid #d8d8d8;
+    color: #b2b2b2;
+    cursor: default
+}
+
+.pages li.disabled a {
+    color: #ccc;
+}
+
+.pages li.disabled:hover {
+    background-color: #fff;
+    color: #ccc;
+    cursor: default
+}
