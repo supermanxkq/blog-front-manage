@@ -122,7 +122,7 @@
 			<div class="data_list">
 				<div class="data_list_title">
 					<img src="<%=rootPath %>/images/byType_icon.png"/> 
-					按日志类别
+					文章分类
 				</div>
 				<div class="datas typeCount">
 					<ul>
@@ -133,7 +133,7 @@
 			<div class="data_list">
 				<div class="data_list_title">
 					<img src="<%=rootPath%>/images/byDate_icon.png"/> 
-					按日志日期
+					文章存档
 				</div>
 				<div class="datas dateCount">
 					<ul>
