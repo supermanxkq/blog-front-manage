@@ -67,9 +67,9 @@
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 		      <ul class="nav navbar-nav">
-		        <!-- <li><a href="#"><font color="black"><strong>Java1234官网</strong></font></a></li> -->
-		        <!-- <li><a href="#"><font color="black"><strong>Java学习路线图</strong></font></a></li> -->
-		        <!-- <li><a href="#"><font color="red"><strong>Java1234 VIP项目</strong></font></a></li> -->
+		        <li><a href="#"><font color="black"><strong>Java1234官网</strong></font></a></li>
+		        <li><a href="#"><font color="black"><strong>Java学习路线图</strong></font></a></li>
+		        <li><a href="#"><font color="red"><strong>Java1234 VIP项目</strong></font></a></li>
 		        <li><a href="/blogger/aboutMe.html"><font color="black"><strong>关于博主</strong></font></a></li>
 		        <li><a href="/download.html"><font color="black"><strong>本站源码下载</strong></font></a></li>
 		      </ul>
@@ -77,7 +77,7 @@
 		        <div class="form-group" >
 		          <input type="text" id="q" name="q" value="" class="form-control" placeholder="请输入要查询的关键字...">
 		        </div>
-		        <button type="submit" class="btn btn-default">搜索2</button>
+		        <button type="submit" class="btn btn-default">搜索</button>
 		      </form>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
@@ -144,7 +144,7 @@
 			<div class="data_list">
 				<div class="data_list_title">
 					<img src="<%=rootPath%>/images/link_icon.png"/> 
-					标签
+					标签云
 				</div>
 				<div class="datas tagCount">
 					<ul>

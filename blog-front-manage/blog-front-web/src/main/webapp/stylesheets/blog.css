@@ -62,9 +62,8 @@
 .datas .date ,.datas .title {
 	display:block;
 	line-height: 1.5;
-	font-family: Verdana,Arial,Helvetica,sans-serif;
 	padding-bottom: 5px;
-	font-size: 14px;
+	font: normal 20px/30px 'Microsoft YaHei';
 }
 
 

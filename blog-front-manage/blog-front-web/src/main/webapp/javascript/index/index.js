@@ -1,4 +1,21 @@
 $(function(){
+	Date.prototype.Format = function(fmt) { // author: meizz
+		  var o = {   
+		    "M+" : this.getMonth()+1,                 // 月份
+		    "d+" : this.getDate(),                    // 日
+		    "h+" : this.getHours(),                   // 小时
+		    "m+" : this.getMinutes(),                 // 分
+		    "s+" : this.getSeconds(),                 // 秒
+		    "q+" : Math.floor((this.getMonth()+3)/3), // 季度
+		    "S"  : this.getMilliseconds()             // 毫秒
+		  };   
+		  if(/(y+)/.test(fmt))   
+		    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length));   
+		  for(var k in o)   
+		    if(new RegExp("("+ k +")").test(fmt))   
+		  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length)));   
+		  return fmt;   
+		}
 	//定义index对象
 	var Index={};
 	
@@ -75,14 +92,9 @@ $(function(){
 				$.each(jsonData.data, function(i, obj) {
 					$(".articleList").find("ul").append(
 					'<li style="margin-bottom: 30px">'+
-				  	'<span class="date"><a href="/blog/articles/153.html">2016年07月25日</a></span>'+
-				  	'<span class="title"><a href="/blog/articles/153.html">'+obj.title+'</a></span>'+
-				  	'<span class="summary">摘要: 数组简介数组是Java中最常见的一种数据结构，可用于存储多个数据；数组的定义type []arrayName; 或者 type arrayName[];实例： int []arr ;int arr[]实例代码：package com.java1234.chap02;public class Demo18 {	...</span>'+
-				  	'<span class="img">'+
-					  		'<a href="/blog/articles/153.html"><img src="http://blog.java1234.com/static/userImages/20160725/1469430717468024387.jpg" title="1469430717468024387.jpg" alt="QQ鎴浘20160725150712.jpg"></a>'+
-					  		'&nbsp;&nbsp;'+
-				  	'</span>'+
-				  	'<span class="info">发表于 2016-07-25 15:15 阅读(126) 评论(3) </span>'+
+				  	'<span class="title"><a href="/blog/articles/153.html">'+(obj.type==1?'<font color="green">[原创]&nbsp;</font>':'<font color="gray">[转载]</font>&nbsp;')+(obj.isTop==1?'<font color="red">[置顶]&nbsp;</font>':'')+obj.title+'</a></span>'+
+				  	'<span class="summary">摘要: '+obj.summary+'……</span>'+
+				  	'<span class="info">发表于'+new Date(obj.createTime).Format("yyyy-MM-dd hh:mm:ss")+'阅读(126) 评论(3) </span>'+
 				  '</li>'+
 				  '<hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;">'
 				  );

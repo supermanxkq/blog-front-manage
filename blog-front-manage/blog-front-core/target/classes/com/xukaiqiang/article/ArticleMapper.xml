@@ -12,6 +12,7 @@
 		<result property="type" column="type" />
 		<result property="tags" column="tags" />
 		<result property="isTop" column="isTop" />
+		<result property="summary" column="summary" />
 	</resultMap>
 	<resultMap type="com.xukaiqiang.blog.vo.article.QueryArticleListVo" id="articleVoResultMap">
 		<result property="id" column="id" />
@@ -24,6 +25,7 @@
 		<result property="type" column="type" />
 		<result property="tags" column="tags" />
 		<result property="isTop" column="isTop" />
+		<result property="summary" column="summary" />
 	</resultMap>
 	
 	<sql id="table_columns">
@@ -36,7 +38,8 @@
 		typeId,
 		type,
 		tags,
-		isTop
+		isTop,
+		summary
     </sql>
 	<sql id="entity_properties">
 		#{id},
@@ -48,7 +51,8 @@
 		#{typeId},
 		#{type},
 		#{tags},
-		#{isTop}
+		#{isTop},
+		#{summary}
 	</sql>
 	<sql id="batch_entity_properties">
 		#{item.id},
@@ -60,7 +64,8 @@
 		#{item.typeId},
 		#{item.type},
 		#{item.tags},
-		#{item.isTop}
+		#{item.isTop},
+		#{item.summary}
 	</sql>
 	
 	<!-- 适用于主键自增类型 -->
@@ -105,6 +110,7 @@
 			<if test="type != null and type != ''">type = #{type},</if>
 			<if test="tags != null and tags != ''">tags = #{tags},</if>
 			<if test="isTop != null">isTop = #{isTop},</if>
+			<if test="summary != null and summary != ''">summary = #{summary},</if>
 		</trim>
 		<where>id = #{id}</where>
 	</update>
@@ -132,6 +138,7 @@
 			<if test="type != null and type != ''">and type = #{type}</if>
 			<if test="tags != null and tags != ''">and tags = #{tags}</if>
 			<if test="isTop != null and isTop != ''">and isTop = #{isTop}</if>
+			<if test="summary != null and summary != ''">and summary = #{summary}</if>
 		</trim>
 	</sql>
 	
@@ -158,7 +165,7 @@
 	</select>
 	
 	<select id="queryArticleList" resultMap="articleVoResultMap" parameterType="com.xukaiqiang.blog.vo.article.QueryArticleListVo">
-			SELECT  a.id id,a.title title,a.tags tags,a.isTop isTop,a.type,a.createTime createTime,u.userName userName,a.`status` status,`at`.`name` typeName  FROM  article  a LEFT  JOIN 
+			SELECT  a.id id,a.title title,a.summary summary,a.tags tags,a.isTop isTop,a.type,a.createTime createTime,u.userName userName,a.`status` status,`at`.`name` typeName  FROM  article  a LEFT  JOIN 
 			`user` u ON  a.userId=u.id
 			LEFT JOIN article_type at on a.typeId=`at`.id
 			ORDER BY a.isTop DESC, a.createTime desc
