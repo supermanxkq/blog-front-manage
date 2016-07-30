@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
-import com.xukaiqiang.blog.model.article.TypeCountVo;
+import com.xukaiqiang.blog.model.article.QueryArticleVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -111,8 +111,27 @@ public class ArticleController {
 	 */
 	@ResponseBody
 	@RequestMapping("/queryTypeCount")
-	public List<TypeCountVo> queryTypeCount() {
-		List<TypeCountVo> list = articleServiceImpl.queryTypeCount();
+	public List<QueryArticleVo> queryTypeCount() {
+		List<QueryArticleVo> list = articleServiceImpl.queryTypeCount();
+		return list;
+	}
+	
+	/**
+	 * Class Name: ArticleController.java
+	 * 
+	 * @Description: 日期分组查询
+	 * @author Administrator
+	 * @date 2016年7月19日 上午12:51:03
+	 * @modifier
+	 * @modify-date 2016年7月19日 上午12:51:03
+	 * @version 1.0
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryDateCount")
+	public List<QueryArticleVo> queryDateCount() {
+		List<QueryArticleVo> list = articleServiceImpl.queryDateCount();
 		return list;
 	}
 }

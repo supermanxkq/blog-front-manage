@@ -148,10 +148,13 @@
 	</select>
 	
 	<!-- 其他自定义SQL -->
-	<select id="queryTypeCount" resultType="com.xukaiqiang.blog.model.article.TypeCountVo">
+	<select id="queryTypeCount" resultType="com.xukaiqiang.blog.model.article.QueryArticleVo">
 		SELECT at.name name,count(a.typeId) count from article_type at 
 		LEFT JOIN article  a ON  at.id=a.typeId
 		GROUP BY  at.name,a.typeId   order by   at.sequence asc;
+	</select>
+	<select id="queryDateCount" resultType="com.xukaiqiang.blog.model.article.QueryArticleVo">
+		select CONCAT(DATE_FORMAT(`createTime`, '%Y年%m月'),'(',convert(count(*),char),')') dateCount from article group by DATE_FORMAT(`createTime`, '%Y-%m') desc;
 	</select>
 	
 	<select id="queryArticleList" resultMap="articleVoResultMap" parameterType="com.xukaiqiang.blog.vo.article.QueryArticleListVo">

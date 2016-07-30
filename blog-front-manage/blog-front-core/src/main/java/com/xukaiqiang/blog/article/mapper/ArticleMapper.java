@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xukaiqiang.blog.common.BaseMapper;
 import com.xukaiqiang.blog.model.article.Article;
-import com.xukaiqiang.blog.model.article.TypeCountVo;
+import com.xukaiqiang.blog.model.article.QueryArticleVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -55,7 +55,22 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	 * @return
 	*/
 		
-	List<TypeCountVo> queryTypeCount();
+	List<QueryArticleVo> queryTypeCount();
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description: 日期分组查询
+	 * @author Administrator
+	 * @date 2016年7月30日 下午2:07:35
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午2:07:35
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<QueryArticleVo> queryDateCount();
 	
 	
 }

@@ -7,6 +7,7 @@ $(function(){
 		var $this=this;
 		$this.queryArticleList();
 		$this.queryArticleTypes();
+		$this.queryDateCount();
 	}
 	
 	//查询类别和数量
@@ -19,6 +20,22 @@ $(function(){
 				$.each(jsonData,function(i,obj){
 					$(".typeCount").find("ul").append(
 							'<li><span><a href="/index.html?typeId=1">'+obj.name+'('+obj.count+')</a></span></li>'		
+					);
+				});
+			}
+		});
+	}
+	
+	//查询日期和数量
+	Index.queryDateCount=function(){
+		$.ajax({
+			url:rootPath+"/article/queryDateCount",
+			data:'',
+			type:'post',
+			success:function(jsonData){
+				$.each(jsonData,function(i,obj){
+					$(".dateCount").find("ul").append(
+							'<li><span><a href="/index.html?releaseDateStr=2016年07月">'+obj.dateCount+'</a></span></li>'		
 					);
 				});
 			}

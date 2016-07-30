@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
-import com.xukaiqiang.blog.model.article.TypeCountVo;
+import com.xukaiqiang.blog.model.article.QueryArticleVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 /**
  * Service Interface:Article
@@ -127,5 +127,19 @@ public interface IArticleService  {
 	 * @return
 	*/
 		
-	List<TypeCountVo> queryTypeCount();
+	List<QueryArticleVo> queryTypeCount();
+
+	
+	/**
+	 * Class Name: IArticleService.java
+	 * @Description: 日期分组查询
+	 * @author Administrator
+	 * @date 2016年7月30日 下午2:06:55
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午2:06:55
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<QueryArticleVo> queryDateCount();
 }

@@ -135,22 +135,8 @@
 					<img src="<%=rootPath%>/images/byDate_icon.png"/> 
 					按日志日期
 				</div>
-				<div class="datas">
+				<div class="datas dateCount">
 					<ul>
-							<li><span><a href="/index.html?releaseDateStr=2016年07月">2016年07月(5)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年06月">2016年06月(36)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年05月">2016年05月(10)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年04月">2016年04月(19)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年03月">2016年03月(14)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年02月">2016年02月(23)</a></span></li>
-						
-							<li><span><a href="/index.html?releaseDateStr=2016年01月">2016年01月(1)</a></span></li>
-						
 					</ul>
 				</div>
 			</div>
