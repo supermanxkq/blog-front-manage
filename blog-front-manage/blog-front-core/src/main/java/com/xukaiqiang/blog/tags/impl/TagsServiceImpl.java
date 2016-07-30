@@ -130,5 +130,21 @@ public class TagsServiceImpl implements ITagsService {
 	@Override
 	public List<Tags> findTagsByPage(Tags search){
 		return tagsMapper.page(search);
+	}
+
+	
+	/* (non-Javadoc)
+	 * @Description: 标签查询
+	 * @author Administrator
+	 * @date 2016年7月30日 下午2:51:17
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午2:51:17
+	 * @version 1.0
+	 * @return
+	*/
+		
+	@Override
+	public List<Tags> queryTagCount() {
+		return tagsMapper.queryAll();
 	};
 }

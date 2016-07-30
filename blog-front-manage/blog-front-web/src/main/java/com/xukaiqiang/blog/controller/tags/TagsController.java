@@ -2,6 +2,7 @@ package com.xukaiqiang.blog.controller.tags;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -72,4 +73,24 @@ public class TagsController {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
     }
+	
+	/**
+	 * Class Name: ArticleController.java
+	 * 
+	 * @Description: 标签查询
+	 * @author Administrator
+	 * @date 2016年7月19日 上午12:51:03
+	 * @modifier
+	 * @modify-date 2016年7月19日 上午12:51:03
+	 * @version 1.0
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryTagCount")
+	public List<Tags> queryTagCount() {
+		List<Tags> list = tagsServiceImpl.queryTagCount();
+		return list;
+	}
+
 }

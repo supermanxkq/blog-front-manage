@@ -8,6 +8,7 @@ $(function(){
 		$this.queryArticleList();
 		$this.queryArticleTypes();
 		$this.queryDateCount();
+		$this.queryTagCount();
 	}
 	
 	//查询类别和数量
@@ -36,6 +37,21 @@ $(function(){
 				$.each(jsonData,function(i,obj){
 					$(".dateCount").find("ul").append(
 							'<li><span><a href="/index.html?releaseDateStr=2016年07月">'+obj.dateCount+'</a></span></li>'		
+					);
+				});
+			}
+		});
+	}
+	//查询标签和数量
+	Index.queryTagCount=function(){
+		$.ajax({
+			url:rootPath+"/tags/queryTagCount",
+			data:'',
+			type:'post',
+			success:function(jsonData){
+				$.each(jsonData,function(i,obj){
+					$(".tagCount").find("ul").append(
+							'<li><span><a href="http://www.java1234.com/" target="_blank">'+obj.name+'('+obj.num+')</a></span></li>'
 					);
 				});
 			}

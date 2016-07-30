@@ -19,6 +19,7 @@ import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
+import com.xukaiqiang.blog.model.tags.Tags;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -134,4 +135,5 @@ public class ArticleController {
 		List<QueryArticleVo> list = articleServiceImpl.queryDateCount();
 		return list;
 	}
+	
 }

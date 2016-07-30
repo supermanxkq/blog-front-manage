@@ -5,6 +5,7 @@ import java.util.List;
 import com.xukaiqiang.blog.common.BaseMapper;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
+import com.xukaiqiang.blog.model.tags.Tags;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -71,6 +72,21 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	*/
 		
 	List<QueryArticleVo> queryDateCount();
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description:  标签查询
+	 * @author Administrator
+	 * @date 2016年7月30日 下午2:48:08
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午2:48:08
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<Tags> queryTagCount();
 	
 	
 }

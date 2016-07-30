@@ -96,4 +96,18 @@ public interface ITagsService  {
 	* @user by wangzx
 	 */
 	List<Tags> findTagsByPage(Tags search);
+
+	
+	/**
+	 * Class Name: ITagsService.java
+	 * @Description: 标签查询
+	 * @author Administrator
+	 * @date 2016年7月30日 下午2:50:42
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午2:50:42
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<Tags> queryTagCount();
 }

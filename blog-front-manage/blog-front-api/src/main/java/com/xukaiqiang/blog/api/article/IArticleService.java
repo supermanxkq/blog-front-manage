@@ -5,6 +5,7 @@ import java.util.List;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
+import com.xukaiqiang.blog.model.tags.Tags;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 /**
  * Service Interface:Article

@@ -144,15 +144,11 @@
 			<div class="data_list">
 				<div class="data_list_title">
 					<img src="<%=rootPath%>/images/link_icon.png"/> 
-					友情链接
+					标签
 				</div>
-				<div class="datas">
+				<div class="datas tagCount">
 					<ul>
-							<li><span><a href="http://www.java1234.com/" target="_blank">Java知识分享网</a></span></li>
-							<li><span><a href="http://pan.java1234.com/" target="_blank">百度云搜索引擎</a></span></li>
-							<li><span><a href="http://www.easyicon.net/" target="_blank">小图标下载</a></span></li>
-							<li><span><a href="http://tieba.baidu.com/f?kw=java" target="_blank">Java贴吧</a></span></li>
-							<li><span><a href="http://www.uugai.com/" target="_blank">免费logo在线制作</a></span></li>
+							
 					</ul>
 				</div>
 			</div>
