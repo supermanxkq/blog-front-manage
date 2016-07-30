@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xukaiqiang.blog.common.BaseMapper;
 import com.xukaiqiang.blog.model.article.Article;
+import com.xukaiqiang.blog.model.article.TypeCountVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -40,6 +41,21 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	 * @return
 	*/
 	int pageCountArticle(QueryArticleListVo search);
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description:查询类别下的数量
+	 * @author Administrator
+	 * @date 2016年7月30日 下午1:09:31
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午1:09:31
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<TypeCountVo> queryTypeCount();
 	
 	
 }

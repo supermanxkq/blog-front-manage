@@ -10,6 +10,7 @@ import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.article.mapper.ArticleMapper;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
+import com.xukaiqiang.blog.model.article.TypeCountVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 
@@ -151,5 +152,21 @@ public class ArticleServiceImpl implements IArticleService {
 		int rowCount=articleMapper.pageCountArticle(search);
 		PageFinder<QueryArticleListVo> pageFinder = new PageFinder<QueryArticleListVo>(search.getPage(), search.getPageSize(), rowCount, data);
 		return pageFinder;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @Description: 查询类别下的数量
+	 * @author Administrator
+	 * @date 2016年7月30日 下午1:08:52
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午1:08:52
+	 * @version 1.0
+	 * @return
+	*/
+		
+	@Override
+	public List<TypeCountVo> queryTypeCount() {
+		return articleMapper.queryTypeCount();
 	};
 }

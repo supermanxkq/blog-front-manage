@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
+import com.xukaiqiang.blog.model.article.TypeCountVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 /**
  * Service Interface:Article
@@ -113,4 +114,18 @@ public interface IArticleService  {
 	*/
 		
 	PageFinder<QueryArticleListVo> queryArticleList(QueryArticleListVo search);
+
+	
+	/**
+	 * Class Name: IArticleService.java
+	 * @Description:  查询类别下的数量
+	 * @author Administrator
+	 * @date 2016年7月30日 下午1:08:27
+	 * @modifier
+	 * @modify-date 2016年7月30日 下午1:08:27
+	 * @version 1.0
+	 * @return
+	*/
+		
+	List<TypeCountVo> queryTypeCount();
 }

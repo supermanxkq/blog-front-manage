@@ -6,8 +6,24 @@ $(function(){
 	Index.init=function(){
 		var $this=this;
 		$this.queryArticleList();
+		$this.queryArticleTypes();
 	}
 	
+	//查询类别和数量
+	Index.queryArticleTypes=function(){
+		$.ajax({
+			url:rootPath+"/article/queryTypeCount",
+			data:'',
+			type:'post',
+			success:function(jsonData){
+				$.each(jsonData,function(i,obj){
+					$(".typeCount").find("ul").append(
+							'<li><span><a href="/index.html?typeId=1">'+obj.name+'('+obj.count+')</a></span></li>'		
+					);
+				});
+			}
+		});
+	}
 	
 	//分页查询所有的文章列表
 	Index.queryArticleList=function(page){
@@ -38,7 +54,7 @@ $(function(){
 				  '<hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;">'
 				  );
 				});
-				   if (jsonData.rowCount >jsonData.pageSize) {
+//				   if (jsonData.rowCount >jsonData.pageSize) {
                        $("#pagination").pagination(jsonData.rowCount,
                            {
                                next_text: "下一页",
@@ -53,9 +69,9 @@ $(function(){
                                    Article.queryList(pageNo);
                                }
                            });
-                   } else {
-                       $(".pagination").html('');
-                   }
+//                   } else {
+//                       $(".pagination").html('');
+//                   }
 				   if (this.page <= 1) {
 						return 1;
 					}

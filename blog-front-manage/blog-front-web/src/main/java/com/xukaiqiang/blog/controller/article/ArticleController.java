@@ -2,6 +2,7 @@ package com.xukaiqiang.blog.controller.article;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
+import com.xukaiqiang.blog.model.article.TypeCountVo;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -92,5 +94,25 @@ public class ArticleController {
 	public PageFinder<QueryArticleListVo> queryArticleList(Model model, QueryArticleListVo search) {
 		PageFinder<QueryArticleListVo> pageFinder = articleServiceImpl.queryArticleList(search);
 		return pageFinder;
+	}
+	
+	
+	/**
+	 * Class Name: ArticleController.java
+	 * 
+	 * @Description: 查询类别下的数量
+	 * @author Administrator
+	 * @date 2016年7月19日 上午12:51:03
+	 * @modifier
+	 * @modify-date 2016年7月19日 上午12:51:03
+	 * @version 1.0
+	 * @param model
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/queryTypeCount")
+	public List<TypeCountVo> queryTypeCount() {
+		List<TypeCountVo> list = articleServiceImpl.queryTypeCount();
+		return list;
 	}
 }
