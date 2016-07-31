@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xukaiqiang.blog.comments.mapper.CommentsMapper">
+	<resultMap type="com.xukaiqiang.blog.model.comments.Comments" id="commentsResultMap">
+		<result property="id" column="id" />
+		<result property="createTime" column="createTime" />
+		<result property="content" column="content" />
+		<result property="addredss" column="addredss" />
+		<result property="articleId" column="articleId" />
+		<result property="ip" column="ip" />
+	</resultMap>
+	
+	<sql id="table_columns">
+		id,
+		createTime,
+		content,
+		addredss,
+		articleId,
+		ip
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{createTime},
+		#{content},
+		#{addredss},
+		#{articleId},
+		#{ip}
+	</sql>
+	<sql id="batch_entity_properties">
+		#{item.id},
+		#{item.createTime},
+		#{item.content},
+		#{item.addredss},
+		#{item.articleId},
+		#{item.ip}
+	</sql>
+	
+	<!-- 适用于主键自增类型 -->
+	<insert id="insert" parameterType="com.xukaiqiang.blog.model.comments.Comments" useGeneratedKeys="true" keyProperty="id">
+		insert into comments( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+	
+	<!-- 批量添加 适用于主键自增类型  不支持返回主键-->
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into comments( <include refid="table_columns" /> ) 
+		values 
+		<foreach item="item" collection="list" separator="," >
+			( <include refid="entity_properties" /> )
+		</foreach>
+	</insert>
+	
+	<!--根据主键删除 -->
+	<delete id="deleteById">
+		delete from tbl_users
+		where id = #{id}
+	</delete>
+	
+	<!-- 根据ID批量删除 -->
+	<delete id="deleteByIds">
+		delete from comments
+		where id in
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="com.xukaiqiang.blog.model.comments.Comments">
+		update comments 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="createTime != null and createTime != ''">createTime = #{createTime},</if>
+			<if test="content != null and content != ''">content = #{content},</if>
+			<if test="addredss != null and addredss != ''">addredss = #{addredss},</if>
+			<if test="articleId != null and articleId != ''">articleId = #{articleId},</if>
+			<if test="ip != null and ip != ''">ip = #{ip},</if>
+		</trim>
+		<where>id = #{id}</where>
+	</update>
+	
+	<select id="findById" resultMap="commentsResultMap" parameterType="String" >
+		select <include refid="table_columns" />
+		from comments
+		where id = #{id}
+	</select>
+	
+	<select id="queryAllList" resultMap="commentsResultMap">
+		select <include refid="table_columns" /> 
+		from comments
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="articleId != null and articleId != ''">and articleId = #{articleId}</if>
+		</trim>
+	</select>
+	
+	<!-- 使用like用法：columnName like concat('%',#columnName#,'%') -->
+	<sql id="page_where">
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="createTime != null and createTime != ''">and createTime = #{createTime}</if>
+			<if test="content != null and content != ''">and content = #{content}</if>
+			<if test="addredss != null and addredss != ''">and addredss = #{addredss}</if>
+			<if test="articleId != null and articleId != ''">and articleId = #{articleId}</if>
+			<if test="ip != null and ip != ''">and ip = #{ip}</if>
+		</trim>
+	</sql>
+	
+	<select id="page" resultMap="commentsResultMap" parameterType="com.xukaiqiang.blog.model.comments.Comments">
+		select <include refid="table_columns" />
+		from comments
+		<include refid="page_where" />
+		limit #{firstIndex},#{pageSize}
+	</select>
+	
+	<select id="pageCount" resultType="int" parameterType="com.xukaiqiang.blog.model.comments.Comments">
+		select count(id) from comments
+		<include refid="page_where" />
+	</select>
+	
+	<!-- 其他自定义SQL -->
+	
+</mapper>

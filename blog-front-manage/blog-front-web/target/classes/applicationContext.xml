@@ -118,7 +118,8 @@
 				com.xukaiqiang.blog.user.mapper,
 				com.xukaiqiang.blog.userdetail.mapper,
 				com.xukaiqiang.blog.tags.mapper,
-				com.xukaiqiang.blog.articletags.mapper
+				com.xukaiqiang.blog.articletags.mapper,
+				com.xukaiqiang.blog.comments.mapper
 			</value>
 		</property>
 	</bean>

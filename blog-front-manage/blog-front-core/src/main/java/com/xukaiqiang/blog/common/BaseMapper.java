@@ -3,6 +3,7 @@ package com.xukaiqiang.blog.common;
 import java.util.List;
 import java.util.Map;
 
+import com.xukaiqiang.blog.model.articleType.ArticleType;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 public interface BaseMapper<T> {
@@ -84,7 +85,7 @@ public interface BaseMapper<T> {
 	* @date 2014-12-04 下午12:11:46
 	* @user by wang.zx
 	 */
-	QueryArticleListVo findById(Integer id);
+	T findById(Integer id);
 	
 	/**
 	 * 

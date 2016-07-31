@@ -115,8 +115,8 @@
 		<where>id = #{id}</where>
 	</update>
 	
-	<select id="findById" resultMap="articleVoResultMap" parameterType="String" >
-		select a.title title,a.content content,at.name typeName,a.createTime createTime,a.tags tags
+	<select id="findArticleById" resultMap="articleVoResultMap" parameterType="String" >
+		select a.id id,a.title title,a.content content,at.name typeName,a.createTime createTime,a.tags tags
 		from article a
 		left join article_type at
 		on  a.typeId=at.id

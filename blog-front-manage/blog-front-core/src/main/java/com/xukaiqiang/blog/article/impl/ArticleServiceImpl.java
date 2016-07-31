@@ -119,7 +119,7 @@ public class ArticleServiceImpl implements IArticleService {
 	 */
 	@Override
 	public QueryArticleListVo findArticleById(Integer id){
-		return articleMapper.findById(id);
+		return articleMapper.findArticleById(id);
 	};
 	
 	/**
