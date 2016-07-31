@@ -190,19 +190,40 @@ public class ArticleServiceImpl implements IArticleService {
 	}
 
 	
+
+	
 	/* (non-Javadoc)
-	 * @Description: 查询上一篇和下一篇文章
+	 * @Description: 查询上一篇文章
 	 * @author Administrator
-	 * @date 2016年7月31日 下午2:12:29
+	 * @date 2016年7月31日 下午4:06:16
 	 * @modifier
-	 * @modify-date 2016年7月31日 下午2:12:29
+	 * @modify-date 2016年7月31日 下午4:06:16
 	 * @version 1.0
 	 * @param id
 	 * @return
 	*/
 		
 	@Override
-	public List<Article> findPreAndNextArticle(Integer id) {
-		return articleMapper.findPreAndNextArticle(id);
+	public Article findPreArticle(Integer id) {
+		return articleMapper.findPreArticle(id);
 	}
+
+	
+	/* (non-Javadoc)
+	 * @Description: 查询下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午4:06:16
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午4:06:16
+	 * @version 1.0
+	 * @param id
+	 * @return
+	*/
+		
+	@Override
+	public Article findNextArticle(Integer id) {
+		return articleMapper.findNextArticle(id);
+	}
+
+	
 }

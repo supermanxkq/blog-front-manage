@@ -148,15 +148,30 @@ public interface IArticleService  {
 	
 	/**
 	 * Class Name: IArticleService.java
-	 * @Description: 查询上一篇和下一篇文章
+	 * @Description: 查询上一篇
 	 * @author Administrator
-	 * @date 2016年7月31日 下午2:11:52
+	 * @date 2016年7月31日 下午4:05:27
 	 * @modifier
-	 * @modify-date 2016年7月31日 下午2:11:52
+	 * @modify-date 2016年7月31日 下午4:05:27
 	 * @version 1.0
 	 * @param id
 	 * @return
 	*/
 		
-	List<Article> findPreAndNextArticle(Integer id);
+	Article findPreArticle(Integer id);
+
+	
+	/**
+	 * Class Name: IArticleService.java
+	 * @Description: 查询下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午4:05:47
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午4:05:47
+	 * @version 1.0
+	 * @param id
+	 * @return
+	*/
+		
+	Article findNextArticle(Integer id);
 }

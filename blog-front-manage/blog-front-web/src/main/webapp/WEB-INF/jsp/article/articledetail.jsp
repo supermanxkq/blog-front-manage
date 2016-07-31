@@ -56,16 +56,16 @@
 		</div>
 		<div class="blog_lastAndNextPage">
 			<c:choose>
-					<c:when test="${preAndNext[0]!=null}">
-					<p>上一篇：<a href='<%=rootPath%>/article/articleDetail/${preAndNext[0].id}'>${preAndNext[0].title}</a></p>
+					<c:when test="${preArticle!=null}">
+					<p>上一篇：<a href='<%=rootPath%>/article/articleDetail/${preArticle.id}'>${preArticle.title}</a></p>
 					</c:when>
 					<c:otherwise>
 						<p>上一篇：没有了</p>
 					</c:otherwise>
 			</c:choose>
 			<c:choose>
-					<c:when test="${preAndNext[1]!=null}">
-					<p>下一篇：<a href='<%=rootPath%>/article/articleDetail/${preAndNext[1].id}'>${preAndNext[1].title}</a></p>
+					<c:when test="${nextArticle!=null}">
+					<p>下一篇：<a href='<%=rootPath%>/article/articleDetail/${nextArticle.id}'>${nextArticle.title}</a></p>
 					</c:when>
 					<c:otherwise>
 						<p>下一篇：没有了</p>

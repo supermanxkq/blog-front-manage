@@ -104,6 +104,36 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	*/
 		
 	List<Article> findPreAndNextArticle(Integer id);
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description: 查询上一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午4:07:38
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午4:07:38
+	 * @version 1.0
+	 * @return
+	*/
+		
+	Article findPreArticle(Integer id);
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description: 查询下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午4:07:53
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午4:07:53
+	 * @version 1.0
+	 * @return
+	*/
+		
+	Article findNextArticle(Integer id);
 	
 	
 }

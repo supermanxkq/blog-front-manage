@@ -2,6 +2,7 @@ package com.xukaiqiang.blog.controller.article;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -153,7 +154,10 @@ public class ArticleController {
 		Article article=articleServiceImpl.findArticleById(id);
 		model.addAttribute("article", article);
 		//查询上一篇和下一篇文章
-		model.addAttribute("preAndNext", articleServiceImpl.findPreAndNextArticle(id));
+		Article preArticle=articleServiceImpl.findPreArticle(id);
+		Article nextArticle=articleServiceImpl.findNextArticle(id);
+		model.addAttribute("preArticle", preArticle);
+		model.addAttribute("nextArticle", nextArticle);
 		return "article/articledetail";
 	}
 }
