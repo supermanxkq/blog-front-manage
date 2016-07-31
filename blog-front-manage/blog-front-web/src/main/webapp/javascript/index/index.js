@@ -85,7 +85,8 @@ $(function(){
 			type : 'post',
 			success:function(jsonData){
 				// 清空table中的数据
-				$(".articleList").find("tr").remove();
+				$(".articleList ul").find("li").remove();
+				$(".articleList ul").find(".hrline").remove();
 				 if (jsonData.data.length == 0) {
                      $(".articleList").append( '<tr><td colspan="9">没有查找到数据。</td></tr>');
                  }
@@ -96,7 +97,7 @@ $(function(){
 				  	'<span class="summary">摘要: '+obj.summary+'……</span>'+
 				  	'<span class="info">'+new Date(obj.createTime).Format("yyyy-MM-dd hh:mm:ss")+'阅读(126) 评论(3) </span>'+
 				  '</li>'+
-				  '<hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;">'
+				  '<hr class="hrline" style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;">'
 				  );
 				});
 //				   if (jsonData.rowCount >jsonData.pageSize) {
@@ -111,7 +112,7 @@ $(function(){
                                num_edge_entries: 1,
                                callback: function (page, jq) {
                                    var pageNo = page + 1;
-                                   Article.queryList(pageNo);
+                                   Index.queryArticleList(pageNo);
                                }
                            });
 //                   } else {
