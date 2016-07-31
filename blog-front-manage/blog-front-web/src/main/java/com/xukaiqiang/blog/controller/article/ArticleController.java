@@ -63,11 +63,6 @@ public class ArticleController {
 		return "redirect:/article";
 	}
 	
-	@ResponseBody
-	@RequestMapping(value="/{id}", method = RequestMethod.GET)
-	public Article getJson(Model model, @PathVariable Integer id){
-		return articleServiceImpl.findArticleById(id);
-	}
 	
 	/**
 	 * 后台接收Date转换
@@ -151,8 +146,8 @@ public class ArticleController {
 	*/
 	@RequestMapping("/articleDetail/{id}")	
 	public String articleDetail(Model model,@PathVariable Integer id){
-		Article article=articleServiceImpl.findArticleById(id);
-		model.addAttribute("article", article);
+		QueryArticleListVo queryArticleListVo=articleServiceImpl.findArticleById(id);
+		model.addAttribute("article", queryArticleListVo);
 		//查询上一篇和下一篇文章
 		Article preArticle=articleServiceImpl.findPreArticle(id);
 		Article nextArticle=articleServiceImpl.findNextArticle(id);

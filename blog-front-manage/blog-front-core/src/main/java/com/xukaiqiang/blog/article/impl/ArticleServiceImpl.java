@@ -118,7 +118,7 @@ public class ArticleServiceImpl implements IArticleService {
 	* @user by chopin
 	 */
 	@Override
-	public Article findArticleById(Integer id){
+	public QueryArticleListVo findArticleById(Integer id){
 		return articleMapper.findById(id);
 	};
 	

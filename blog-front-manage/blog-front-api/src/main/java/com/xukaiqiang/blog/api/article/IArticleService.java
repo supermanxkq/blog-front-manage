@@ -87,7 +87,7 @@ public interface IArticleService  {
 	* @date 2016-7-27
 	* @user by wangzx
 	 */
-	Article findArticleById(Integer id);
+	QueryArticleListVo findArticleById(Integer id);
 	
 	/**
 	 * 
