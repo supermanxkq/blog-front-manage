@@ -1,6 +1,8 @@
 package com.xukaiqiang.blog.article.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -185,5 +187,22 @@ public class ArticleServiceImpl implements IArticleService {
 	@Override
 	public List<QueryArticleVo> queryDateCount() {
 		return articleMapper.queryDateCount();
+	}
+
+	
+	/* (non-Javadoc)
+	 * @Description: 查询上一篇和下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午2:12:29
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午2:12:29
+	 * @version 1.0
+	 * @param id
+	 * @return
+	*/
+		
+	@Override
+	public List<Article> findPreAndNextArticle(Integer id) {
+		return articleMapper.findPreAndNextArticle(id);
 	}
 }

@@ -92,9 +92,9 @@ $(function(){
 				$.each(jsonData.data, function(i, obj) {
 					$(".articleList").find("ul").append(
 					'<li style="margin-bottom: 30px">'+
-				  	'<span class="title"><a href="/blog/articles/153.html">'+(obj.type==1?'<font color="green">[原创]&nbsp;</font>':'<font color="gray">[转载]</font>&nbsp;')+(obj.isTop==1?'<font color="red">[置顶]&nbsp;</font>':'')+obj.title+'</a></span>'+
+				  	'<span class="title"><a href='+rootPath+'/article/articleDetail/'+obj.id+'>'+(obj.type==1?'<font color="green">[原创]&nbsp;</font>':'<font color="gray">[转载]</font>&nbsp;')+(obj.isTop==1?'<font color="red">[置顶]&nbsp;</font>':'')+obj.title+'</a></span>'+
 				  	'<span class="summary">摘要: '+obj.summary+'……</span>'+
-				  	'<span class="info">发表于'+new Date(obj.createTime).Format("yyyy-MM-dd hh:mm:ss")+'阅读(126) 评论(3) </span>'+
+				  	'<span class="info">'+new Date(obj.createTime).Format("yyyy-MM-dd hh:mm:ss")+'阅读(126) 评论(3) </span>'+
 				  '</li>'+
 				  '<hr style="height:5px;border:none;border-top:1px dashed gray;padding-bottom:  10px;">'
 				  );

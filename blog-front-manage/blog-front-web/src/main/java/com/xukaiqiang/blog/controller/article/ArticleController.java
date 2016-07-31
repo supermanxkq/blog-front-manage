@@ -3,6 +3,7 @@ package com.xukaiqiang.blog.controller.article;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -19,7 +20,6 @@ import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
-import com.xukaiqiang.blog.model.tags.Tags;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -75,7 +75,7 @@ public class ArticleController {
     public void initBinder(WebDataBinder binder) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 	
 	/**
@@ -136,4 +136,24 @@ public class ArticleController {
 		return list;
 	}
 	
+	
+	
+	/**
+	 * Class Name: ArticleController.java
+	 * @Description: 查看文章详情
+	 * @author Administrator
+	 * @date 2016年7月31日 上午9:22:32
+	 * @modifier
+	 * @modify-date 2016年7月31日 上午9:22:32
+	 * @version 1.0
+	 * @return
+	*/
+	@RequestMapping("/articleDetail/{id}")	
+	public String articleDetail(Model model,@PathVariable Integer id){
+		Article article=articleServiceImpl.findArticleById(id);
+		model.addAttribute("article", article);
+		//查询上一篇和下一篇文章
+		model.addAttribute("preAndNext", articleServiceImpl.findPreAndNextArticle(id));
+		return "article/articledetail";
+	}
 }

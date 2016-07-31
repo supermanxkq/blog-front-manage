@@ -1,6 +1,7 @@
 package com.xukaiqiang.blog.api.article;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.model.article.Article;
@@ -143,4 +144,19 @@ public interface IArticleService  {
 	*/
 		
 	List<QueryArticleVo> queryDateCount();
+
+	
+	/**
+	 * Class Name: IArticleService.java
+	 * @Description: 查询上一篇和下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午2:11:52
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午2:11:52
+	 * @version 1.0
+	 * @param id
+	 * @return
+	*/
+		
+	List<Article> findPreAndNextArticle(Integer id);
 }

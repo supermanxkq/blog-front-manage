@@ -1,6 +1,7 @@
 package com.xukaiqiang.blog.article.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import com.xukaiqiang.blog.common.BaseMapper;
 import com.xukaiqiang.blog.model.article.Article;
@@ -87,6 +88,22 @@ public interface ArticleMapper extends BaseMapper<Article> {
 	*/
 		
 	List<Tags> queryTagCount();
+
+
+	
+	/**
+	 * Class Name: ArticleMapper.java
+	 * @Description: 查询上一篇和下一篇文章
+	 * @author Administrator
+	 * @date 2016年7月31日 下午2:21:55
+	 * @modifier
+	 * @modify-date 2016年7月31日 下午2:21:55
+	 * @version 1.0
+	 * @param id
+	 * @return
+	*/
+		
+	List<Article> findPreAndNextArticle(Integer id);
 	
 	
 }

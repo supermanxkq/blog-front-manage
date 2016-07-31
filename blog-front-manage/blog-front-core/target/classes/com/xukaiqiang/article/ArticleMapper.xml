@@ -184,4 +184,10 @@
 		  select a.id   from  article a
 		  where  a.typeId=#{typeId}
 	</select>
+	
+	<select id="findPreAndNextArticle" parameterType="int" resultMap="articleResultMap">
+			select id,title from article  
+			where  id&gt;#{id}  limit 1 
+			union all  (select id,title from article  where id&lt;#{id} order by id desc limit 1);
+	</select>
 </mapper>
