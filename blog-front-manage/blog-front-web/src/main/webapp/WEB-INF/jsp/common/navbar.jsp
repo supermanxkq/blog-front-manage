@@ -36,12 +36,12 @@
 		      <ul class="nav navbar-nav">
 		        <li><a href="<%=rootPath %>"><font color="black"><strong>博客</strong></font></a></li>
 		      </ul>
-		      <form action="/blog/q.html" class="navbar-form navbar-right" role="search" method="post" onsubmit="return checkData()">
-		        <div class="form-group" >
-		          <input type="text" id="q" name="q" value="" class="form-control" placeholder="请输入要查询的关键字...">
-		        </div>
-		        <button type="submit" class="btn btn-default">搜索</button>
-		      </form>
+<!-- 		      <form action="/blog/q.html" class="navbar-form navbar-right" role="search" method="post" onsubmit="return checkData()"> -->
+<!-- 		        <div class="form-group" > -->
+<!-- 		          <input type="text" id="q" name="q" value="" class="form-control" placeholder="请输入要查询的关键字..."> -->
+<!-- 		        </div> -->
+<!-- 		        <button type="submit" class="btn btn-default">搜索</button> -->
+<!-- 		      </form> -->
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
