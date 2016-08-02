@@ -38,16 +38,16 @@
 				</div>
 			</div>
 			
-			<div class="data_list">
-				<div class="data_list_title">
-					<img src="<%=rootPath%>/images/label.png"/> 
-					标签云
-				</div>
-				<div class="datas tagCount">
-					<ul>
+<!-- 			<div class="data_list"> -->
+<!-- 				<div class="data_list_title"> -->
+<%-- 					<img src="<%=rootPath%>/images/label.png"/>  --%>
+<!-- 					标签云 -->
+<!-- 				</div> -->
+<!-- 				<div class="datas tagCount"> -->
+<!-- 					<ul> -->
 							
-					</ul>
-				</div>
-			</div>
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			
 		</div>

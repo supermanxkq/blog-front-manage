@@ -158,23 +158,31 @@
 	
 	<!-- 其他自定义SQL -->
 	<select id="queryTypeCount" resultType="com.xukaiqiang.blog.model.article.QueryArticleVo">
-		SELECT at.name name,count(a.typeId) count from article_type at 
+		SELECT at.id id,at.name name,count(a.typeId) count from article_type at 
 		LEFT JOIN article  a ON  at.id=a.typeId
 		GROUP BY  at.name,a.typeId   order by   at.sequence asc;
 	</select>
 	<select id="queryDateCount" resultType="com.xukaiqiang.blog.model.article.QueryArticleVo">
-		select CONCAT(DATE_FORMAT(`createTime`, '%Y年%m月'),'(',convert(count(*),char),')') dateCount from article group by DATE_FORMAT(`createTime`, '%Y-%m') desc;
+		select DATE_FORMAT(`createTime`, '%Y-%m') createTime,count(*) count from article group by DATE_FORMAT(`createTime`, '%Y-%m') desc;
 	</select>
 	
 	<select id="queryArticleList" resultMap="articleVoResultMap" parameterType="com.xukaiqiang.blog.vo.article.QueryArticleListVo">
 			SELECT  a.id id,a.title title,a.summary summary,a.tags tags,a.isTop isTop,a.type,a.createTime createTime,u.userName userName,a.`status` status,`at`.`name` typeName  FROM  article  a LEFT  JOIN 
 			`user` u ON  a.userId=u.id
 			LEFT JOIN article_type at on a.typeId=`at`.id
+			<trim prefix="where" prefixOverrides="and | or ">
+				<if test="typeId != null and typeId != ''">and a.typeId = #{typeId}</if>
+				<if test="createTimeStr!= null and createTimeStr!=''">and DATE_FORMAT(createTime,'%Y-%m')= #{createTimeStr} </if>
+			</trim>
 			ORDER BY a.isTop DESC, a.createTime desc
 			limit #{firstIndex},#{pageSize}
 	</select>
 	<select id="pageCountArticle" resultType="int" parameterType="com.xukaiqiang.blog.vo.article.QueryArticleListVo">
 		select count(id) from article
+			<trim prefix="where" prefixOverrides="and | or ">
+				<if test="typeId != null and typeId != ''">and typeId = #{typeId}</if>
+				<if test="createTimeStr!= null and createTimeStr!='' ">and DATE_FORMAT(createTime,'%Y-%m')= #{createTimeStr} </if>
+			</trim>
 	</select>
 	<!-- 根据编号进行删除 -->
 	<delete id="deleteByTypeId" parameterType="int">

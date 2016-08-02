@@ -1,8 +1,6 @@
 package com.xukaiqiang.blog.article.impl;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,10 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.article.mapper.ArticleMapper;
-import com.xukaiqiang.blog.common.PageFinder;
+import com.xukaiqiang.blog.common.PageViewBaidu;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
-import com.xukaiqiang.blog.utils.HtmlRegexpUtil;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 
@@ -150,13 +147,23 @@ public class ArticleServiceImpl implements IArticleService {
 	 * @return
 	*/
 	@Override
-	public PageFinder<QueryArticleListVo> queryArticleList(QueryArticleListVo search) {
-		List<QueryArticleListVo> data = articleMapper.queryArticleList(search);
-		int rowCount=articleMapper.pageCountArticle(search);
-		PageFinder<QueryArticleListVo> pageFinder = new PageFinder<QueryArticleListVo>(search.getPage(), search.getPageSize(), rowCount, data);
-		return pageFinder;
+	public List<QueryArticleListVo> queryArticleList(QueryArticleListVo search) {
+		return articleMapper.queryArticleList(search);
 	}
-
+	/* (non-Javadoc)
+	 * @Description: 数量查询
+	 * @author Administrator
+	 * @date 2016年7月29日 下午10:29:11
+	 * @modifier
+	 * @modify-date 2016年7月29日 下午10:29:11
+	 * @version 1.0
+	 * @param search
+	 * @return
+	*/
+	@Override
+	public int pageCountArticle(QueryArticleListVo search) {
+		return articleMapper.pageCountArticle(search);
+	}
 	
 	/* (non-Javadoc)
 	 * @Description: 查询类别下的数量

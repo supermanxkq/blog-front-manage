@@ -36,7 +36,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>springmvc</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>*.html</url-pattern>
   </servlet-mapping>
 
    <filter>
@@ -72,7 +72,7 @@
   <welcome-file-list>
 <!--     <welcome-file>index.html</welcome-file>
     <welcome-file>index.jsp</welcome-file> -->
-    <welcome-file>/index</welcome-file> 
+    <welcome-file>a.jsp</welcome-file> 
   </welcome-file-list>
   
   <distributable/>

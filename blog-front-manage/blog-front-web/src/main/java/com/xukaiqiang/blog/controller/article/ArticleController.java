@@ -17,12 +17,15 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xukaiqiang.blog.api.article.IArticleService;
 import com.xukaiqiang.blog.common.PageFinder;
+import com.xukaiqiang.blog.common.PageViewBaidu;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
+import com.xukaiqiang.blog.util.StringUtil;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**
@@ -80,7 +83,7 @@ public class ArticleController {
 	 * Class Name: ArticleController.java
 	 * 
 	 * @Description: 查询博客列表
-	 * @author Administrator
+	 * @author Administrabtor
 	 * @date 2016年7月19日 上午12:51:03
 	 * @modifier
 	 * @modify-date 2016年7月19日 上午12:51:03
@@ -88,11 +91,28 @@ public class ArticleController {
 	 * @param model
 	 * @return
 	 */
-	@ResponseBody
-	@RequestMapping("/queryArticleList")
-	public PageFinder<QueryArticleListVo> queryArticleList(Model model, QueryArticleListVo search) {
-		PageFinder<QueryArticleListVo> pageFinder = articleServiceImpl.queryArticleList(search);
-		return pageFinder;
+	@RequestMapping(value={"","/queryArticleList"})
+	public String queryArticleList(Model model,@RequestParam(value="createTimeStr",required=false) String createTimeStr, @RequestParam(value="typeId",required=false) Integer typeId,@RequestParam(value="page",required=false) Integer page,HttpServletRequest request) {
+		QueryArticleListVo search=new QueryArticleListVo();
+//		search.setCreateTime(createTime);
+//		if(page==null){
+//			page=1;
+//		}
+		search.setTypeId(typeId);
+		search.setCreateTimeStr(createTimeStr);
+		search.setPage(page);
+		int rowCount=articleServiceImpl.pageCountArticle(search);
+		List<QueryArticleListVo> data=articleServiceImpl.queryArticleList(search);
+		StringBuffer param=new StringBuffer(); 
+		if (typeId!=null) {
+			param.append("typeId="+typeId+"&");
+		}
+		if (createTimeStr!=""&&createTimeStr!=null) {
+			param.append("createTimeStr="+createTimeStr+"&");
+		}
+		PageViewBaidu<QueryArticleListVo> pageViewBaidu=new PageViewBaidu<QueryArticleListVo>(search.getPage(), rowCount, data,request.getContextPath(),param.toString());
+		model.addAttribute("pageViewBaidu", pageViewBaidu);
+		return "index/index";
 	}
 	
 	

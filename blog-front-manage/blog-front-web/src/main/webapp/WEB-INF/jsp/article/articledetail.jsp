@@ -18,7 +18,6 @@
 <link rel="stylesheet" href="<%=rootPath %>/bootstrap/css/bootstrap.min.css">
 <link rel="stylesheet" href="<%=rootPath %>/bootstrap/css/bootstrap-theme.min.css">
 <link rel="stylesheet" href="<%=rootPath %>/stylesheets/blog.css">
-<link href="http://blog.java1234.com/favicon.ico" rel="SHORTCUT ICON">
 <script src="<%=rootPath %>/javascript/jquery/jquery.min-1.11.3.js"></script>
 <script src="<%=rootPath %>/bootstrap/js/bootstrap.min.js"></script>
 <style type="text/css">
@@ -45,19 +44,19 @@
 		<div class="bshare-custom"><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
 	   </div>
 		<div class="blog_info">
-			发布时间：『<fmt:formatDate value="${article.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/> 』&nbsp;&nbsp;博客类别：${article.typeName}&nbsp;&nbsp;阅读(22) 评论(4)
+			发布时间：『<fmt:formatDate value="${article.createTime}" pattern="yyyy-MM-dd HH:mm:ss"/> 』&nbsp;&nbsp;博客类别：${article.typeName}&nbsp;&nbsp;
 		</div>
 		<div class="blog_content">
 			${article.content }
 		</div>
 		<div class="blog_keyWord">
 			<font><strong>标签：</strong></font>
-						&nbsp;&nbsp;<a href="/blog/q.html?q=百度云" target="_blank">${article.tags}</a>&nbsp;&nbsp;
+						&nbsp;&nbsp;${article.tags}&nbsp;&nbsp;
 		</div>
 		<div class="blog_lastAndNextPage">
 			<c:choose>
 					<c:when test="${preArticle!=null}">
-					<p>上一篇：<a href='<%=rootPath%>/article/articleDetail/${preArticle.id}'>${preArticle.title}</a></p>
+					<p>上一篇：<a href='<%=rootPath%>/article/articleDetail/${preArticle.id}.html'>${preArticle.title}</a></p>
 					</c:when>
 					<c:otherwise>
 						<p>上一篇：没有了</p>
@@ -65,7 +64,7 @@
 			</c:choose>
 			<c:choose>
 					<c:when test="${nextArticle!=null}">
-					<p>下一篇：<a href='<%=rootPath%>/article/articleDetail/${nextArticle.id}'>${nextArticle.title}</a></p>
+					<p>下一篇：<a href='<%=rootPath%>/article/articleDetail/${nextArticle.id}.html'>${nextArticle.title}</a></p>
 					</c:when>
 					<c:otherwise>
 						<p>下一篇：没有了</p>
@@ -109,5 +108,7 @@
 </div>
 <script src="<%=rootPath %>/javascript/index/index.js"></script>
 <script src="<%=rootPath %>/javascript/comments/comments.js"></script>
+	<script type="text/javascript"
+		src="<%=rootPath%>/javascript/plus/jquery.pagination.js"></script>
 </body>
 </html>

@@ -24,7 +24,7 @@ $(function(){
 		$this.queryAll();
 	}
 	Comments.queryAll=function(){
-		var url=rootPath+"/comments/queryAll";
+		var url=rootPath+"/comments/queryAll.html";
 		var data={};
 		data.articleId=$(".blog_title").data("id");
 		$.ajax({
@@ -46,7 +46,7 @@ $(function(){
 	//添加
 	Comments.event=function(){
 		$(".submitComment").on('click',function(){
-			var url=rootPath+"/comments/add";
+			var url=rootPath+"/comments/add.html";
 			var  data={};
 			data.content=$(".commentContent").val();
 			data.articleId=$(".blog_title").data("id");

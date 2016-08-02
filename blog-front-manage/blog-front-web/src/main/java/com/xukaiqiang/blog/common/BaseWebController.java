@@ -15,8 +15,8 @@ public class BaseWebController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value={"/","/index"}) 
-	public String index(){
-		return "index/index";
-	}
+//	@RequestMapping(value={"/","/index"}) 
+//	public String index(){
+//		return "index/index";
+//	}
 }

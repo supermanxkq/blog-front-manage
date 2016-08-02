@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.xukaiqiang.blog.common.PageFinder;
+import com.xukaiqiang.blog.common.PageViewBaidu;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
 import com.xukaiqiang.blog.model.tags.Tags;
@@ -115,7 +116,7 @@ public interface IArticleService  {
 	 * @return
 	*/
 		
-	PageFinder<QueryArticleListVo> queryArticleList(QueryArticleListVo search);
+	List<QueryArticleListVo> queryArticleList(QueryArticleListVo search);
 
 	
 	/**
@@ -174,4 +175,19 @@ public interface IArticleService  {
 	*/
 		
 	Article findNextArticle(Integer id);
+
+	
+	/**
+	 * Class Name: IArticleService.java
+	 * @Description: 查询数量
+	 * @author Administrator
+	 * @date 2016年8月2日 下午11:34:52
+	 * @modifier
+	 * @modify-date 2016年8月2日 下午11:34:52
+	 * @version 1.0
+	 * @param search
+	 * @return
+	*/
+		
+	int pageCountArticle(QueryArticleListVo search);
 }
