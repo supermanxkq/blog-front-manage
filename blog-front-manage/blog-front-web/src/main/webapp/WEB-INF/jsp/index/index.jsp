@@ -80,6 +80,13 @@
 			 </div>
 		</div>
 	</div>
+	
+	<c:forEach items="${blogList }" var="obj" varStatus="status">
+			${obj.id}
+			${obj.title}
+			${obj.content}
+			${obj.createTime}
+	</c:forEach>
 <jsp:include page="/WEB-INF/jsp/common/footer.jsp"></jsp:include>
 </div>
 <script src="<%=rootPath %>/javascript/index/index.js" charset="UTF-8"></script>

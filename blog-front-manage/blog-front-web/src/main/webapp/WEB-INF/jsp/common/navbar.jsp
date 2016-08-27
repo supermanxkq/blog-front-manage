@@ -11,7 +11,7 @@
 		<img alt="logo" src="<%=rootPath %>/images/logo.png" width="300px" height="50px">
 	</div>
 	<div class="col-md-8">
-		<iframe style="float: right;" width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe>
+<!-- 		<iframe style="float: right;" width="420" scrolling="no" height="60" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=12&icon=1&num=5"></iframe> -->
 	</div>
 </div>
 	
@@ -36,9 +36,9 @@
 		      <ul class="nav navbar-nav">
 		        <li><a href="<%=rootPath %>"><font color="black"><strong>博客</strong></font></a></li>
 		      </ul>
-		      <form action="/lucene/luceneSearch.html" class="navbar-form navbar-right" role="search" method="post">
+		      <form action="<%=rootPath %>/lucene/search.html" class="navbar-form navbar-right" role="search" method="post">
 		        <div class="form-group" >
-		          <input type="text" id="q" name="q" value="" class="form-control" placeholder="请输入要查询的关键字...">
+		          <input type="text" name="keyWord" value="" class="form-control" placeholder="请输入要查询的关键字...">
 		        </div>
 		        <button type="submit" class="btn btn-default">搜索</button>
 		      </form>
