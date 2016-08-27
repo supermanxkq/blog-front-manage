@@ -2,9 +2,7 @@ package com.xukaiqiang.blog.controller.article;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,11 +19,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.xukaiqiang.blog.api.article.IArticleService;
-import com.xukaiqiang.blog.common.PageFinder;
 import com.xukaiqiang.blog.common.PageViewBaidu;
 import com.xukaiqiang.blog.model.article.Article;
 import com.xukaiqiang.blog.model.article.QueryArticleVo;
-import com.xukaiqiang.blog.util.StringUtil;
 import com.xukaiqiang.blog.vo.article.QueryArticleListVo;
 
 /**

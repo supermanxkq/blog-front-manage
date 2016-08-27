@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xukaiqiang.blog.lucene.mapper.LuceneMapper">
+	<resultMap type="com.xukaiqiang.blog.model.lucene.Search" id="searchResultMap">
+		<result property="id" column="id" />
+		<result property="createDate" column="createDate" />
+		<result property="content" column="content" />
+		<result property="title" column="title" />
+		<result property="url" column="url" />
+		<result property="type" column="type" />
+		<result property="readTimes" column="readTimes" />
+	</resultMap>
+	
+	<sql id="table_columns">
+		id,
+		createDate,
+		content,
+		title,
+		url,
+		type,
+		readTimes
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{createDate},
+		#{content},
+		#{title},
+		#{url},
+		#{type},
+		#{readTimes}
+	</sql>
+	<sql id="batch_entity_properties">
+		#{item.id},
+		#{item.createDate},
+		#{item.content},
+		#{item.title},
+		#{item.url},
+		#{item.type},
+		#{item.readTimes}
+	</sql>
+	
+	<!-- 适用于主键自增类型 -->
+	<insert id="insert" parameterType="com.xukaiqiang.blog.model.lucene.Search" useGeneratedKeys="true" keyProperty="id">
+		insert into comments( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+	
+	<!-- 批量添加 适用于主键自增类型  不支持返回主键-->
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into comments( <include refid="table_columns" /> ) 
+		values 
+		<foreach item="item" collection="list" separator="," >
+			( <include refid="entity_properties" /> )
+		</foreach>
+	</insert>
+	
+	<!--根据主键删除 -->
+	<delete id="deleteById">
+		delete from tbl_users
+		where id = #{id}
+	</delete>
+	
+	<!-- 根据ID批量删除 -->
+	<delete id="deleteByIds">
+		delete from comments
+		where id in
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="com.xukaiqiang.blog.model.lucene.Search">
+		update comments 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="createDate != null and createDate != ''">createDate = #{createDate},</if>
+			<if test="content != null and content != ''">content = #{content},</if>
+			<if test="title != null and title != ''">title = #{title},</if>
+			<if test="url != null and url != ''">url = #{url},</if>
+			<if test="type != null and type != ''">type = #{type},</if>
+			<if test="readTimes != null and readTimes != ''">readTimes = #{readTimes},</if>
+		</trim>
+		<where>id = #{id}</where>
+	</update>
+	
+	<select id="findById" resultMap="searchResultMap" parameterType="String" >
+		select <include refid="table_columns" />
+		from comments
+		where id = #{id}
+	</select>
+	
+	<select id="queryAllList" resultMap="searchResultMap">
+		select <include refid="table_columns" /> 
+		from comments
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="url != null and url != ''">and url = #{url}</if>
+		</trim>
+	</select>
+	
+	<!-- 使用like用法：columnName like concat('%',#columnName#,'%') -->
+	<sql id="page_where">
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="createDate != null and createDate != ''">and createDate = #{createDate}</if>
+			<if test="content != null and content != ''">and content = #{content}</if>
+			<if test="title != null and title != ''">and title = #{title}</if>
+			<if test="url != null and url != ''">and url = #{url}</if>
+			<if test="type != null and type != ''">and type = #{type}</if>
+			<if test="readTimes != null and readTimes != ''">and readTimes = #{readTimes}</if>
+		</trim>
+	</sql>
+	
+	<select id="page" resultMap="searchResultMap" parameterType="com.xukaiqiang.blog.model.lucene.Search">
+		select <include refid="table_columns" />
+		from comments
+		<include refid="page_where" />
+		limit #{firstIndex},#{pageSize}
+	</select>
+	
+	<select id="pageCount" resultType="int" parameterType="com.xukaiqiang.blog.model.lucene.Search">
+		select count(id) from comments
+		<include refid="page_where" />
+	</select>
+	
+	<!-- 其他自定义SQL -->
+	<select id="queryForList"  parameterType="com.xukaiqiang.blog.model.lucene.Search" resultMap="searchResultMap">
+		select a.id,a.title,a.content,a.createTime createDate,aa.name type from  article a LEFT JOIN  
+		article_type aa on a.typeId=aa.id;
+	</select>
+	
+	
+</mapper>

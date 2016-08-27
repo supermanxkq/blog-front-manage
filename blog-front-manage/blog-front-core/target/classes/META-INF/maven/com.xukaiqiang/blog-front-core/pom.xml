@@ -138,17 +138,36 @@
 			<artifactId>commons-net</artifactId>
 			<version>3.2</version>
 		</dependency>
+	<!-- 添加lucene支持 -->
+	<dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-core</artifactId>
+		<version>5.3.1</version>
+	  </dependency>
+	  
+	  <dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-analyzers-common</artifactId>
+		<version>5.3.1</version>
+	 </dependency>
+	 
+	 <dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-analyzers-smartcn</artifactId>
+		<version>5.3.1</version>
+	</dependency>
+	 
+	 
+	 <dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-queryparser</artifactId>
+		<version>5.3.1</version>
+	 </dependency>
+	 
+	 <dependency>
+		<groupId>org.apache.lucene</groupId>
+		<artifactId>lucene-highlighter</artifactId>
+		<version>5.3.1</version>
+	</dependency>
 	</dependencies>
-	<build>
-		<resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.properties</include>
-                    <include>**/*.xml</include>
-                </includes>
-                <filtering>false</filtering>
-            </resource>
-        </resources>
-	</build>
 </project>
