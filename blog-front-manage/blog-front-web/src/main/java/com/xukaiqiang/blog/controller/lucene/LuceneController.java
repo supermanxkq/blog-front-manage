@@ -26,7 +26,7 @@ import com.xukaiqiang.blog.vo.lucene.ArticleLuceneVo;
 @Controller
 @RequestMapping("/lucene")
 public class LuceneController {
-	// 博客索引
+	//博客索引
 		private BlogIndex blogIndex=new BlogIndex();
 	/** 日志 */
 	public Logger logger = Logger.getLogger(LuceneController.class);

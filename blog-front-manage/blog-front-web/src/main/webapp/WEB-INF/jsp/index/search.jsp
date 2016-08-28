@@ -47,7 +47,7 @@
 					  	  <li style="margin-bottom: 20px">
 						  	<span class="title"><a href="<%=rootPath %>/article/articleDetail/${obj.id}.html" target="_blank">${obj.title}</a></span>
 						  	<span class="summary">摘要: ${obj.content}……</span>
-						  	<span class="link"><a href="<%=rootPath %>/article/articleDetail/${obj.id}.html"><%=rootPath %>/article/articleDetail/${obj.id}.html</a>&nbsp;&nbsp;&nbsp;&nbsp;发布日期：${obj.createTime}</span>
+						  	<span class="link"><a href="${pageContext.request.contextPath}/article/articleDetail/${obj.id}.html">${pageContext.request.contextPath}/article/articleDetail/${obj.id}.html</a>&nbsp;&nbsp;&nbsp;&nbsp;发布日期：${obj.createTime}</span>
 						  </li>
 			 </c:forEach>
 			</ul>

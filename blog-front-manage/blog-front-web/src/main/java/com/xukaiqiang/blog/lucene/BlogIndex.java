@@ -28,22 +28,8 @@ import org.apache.lucene.store.FSDirectory;
 
 import com.xukaiqiang.blog.utils.StringUtil;
 import com.xukaiqiang.blog.vo.lucene.ArticleLuceneVo;
-
-
-/**
- * 博客索引类
- * @author Administrator
- *
- */
 public class BlogIndex {
-
 	private Directory dir=null;
-	/**
-	 * 查询博客信息
-	 * @param q 查询关键字
-	 * @return
-	 * @throws Exception
-	 */
 	public List<ArticleLuceneVo> searchBlog(String q)throws Exception{
 //		dir=FSDirectory.open(Paths.get("D://lucene"));
 		dir=FSDirectory.open(Paths.get("/usr/lucene"));

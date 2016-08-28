@@ -57,6 +57,16 @@ $(function(){
 			}
 		});
 	}
+	
+	//验证搜索表单
+	Index.checkForm=function(){
+		var  keyWord=$.trim($("#keyWord").val());
+		if(keyWord==''){
+			alert('请输入搜索关键字！');
+			return false;
+		}
+		return true;
+	}
 	//查询标签和数量
 //	Index.queryTagCount=function(){
 //		$.ajax({

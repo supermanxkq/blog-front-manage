@@ -213,6 +213,6 @@
 	</dependencies>
 
 	<build>
-		<finalName>blog-front-web</finalName>
+	<finalName>blog-front-web</finalName>
 	</build>
 </project>

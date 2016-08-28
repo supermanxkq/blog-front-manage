@@ -36,9 +36,9 @@
 		      <ul class="nav navbar-nav">
 		        <li><a href="<%=rootPath %>"><font color="black"><strong>博客</strong></font></a></li>
 		      </ul>
-		      <form action="<%=rootPath %>/lucene/search.html" class="navbar-form navbar-right" role="search" method="post">
+		      <form action="<%=rootPath %>/lucene/search.html" class="navbar-form navbar-right" role="search" method="post" onsubmit="return Index.checkForm();">
 		        <div class="form-group" >
-		          <input type="text" name="keyWord" value="" class="form-control" placeholder="请输入要查询的关键字...">
+		          <input type="text" id="keyWord" name="keyWord" value="" class="form-control" placeholder="请输入要查询的关键字...">
 		        </div>
 		        <button type="submit" class="btn btn-default">搜索</button>
 		      </form>
