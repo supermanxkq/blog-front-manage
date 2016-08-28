@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xukaiqiang.blog.lesson.mapper.LessonMapper">
+	<resultMap type="com.xukaiqiang.blog.model.lesson.Lesson" id="lessonResultMap">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="downloadUrl" column="downloadUrl" />
+		<result property="courseId" column="courseId" />
+		<result property="time" column="time" />
+	</resultMap>
+	
+	<sql id="table_columns">
+		id,
+		title,
+		downloadUrl,
+		courseId,
+		time
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{title},
+		#{downloadUrl},
+		#{courseId},
+		#{time}
+	</sql>
+	<sql id="batch_entity_properties">
+		#{item.id},
+		#{item.title},
+		#{item.downloadUrl},
+		#{item.courseId},
+		#{item.time}
+	</sql>
+	
+	<!-- 适用于主键自增类型 -->
+	<insert id="insert" parameterType="com.xukaiqiang.blog.model.lesson.Lesson" useGeneratedKeys="true" keyProperty="id">
+		insert into lesson( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+	
+	<!-- 批量添加 适用于主键自增类型  不支持返回主键-->
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into lesson( <include refid="table_columns" /> ) 
+		values 
+		<foreach item="item" collection="list" separator="," >
+			( <include refid="entity_properties" /> )
+		</foreach>
+	</insert>
+	
+	<!--根据主键删除 -->
+	<delete id="deleteById">
+		delete from tbl_users
+		where id = #{id}
+	</delete>
+	
+	<!-- 根据ID批量删除 -->
+	<delete id="deleteByIds">
+		delete from lesson
+		where id in
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="com.xukaiqiang.blog.model.lesson.Lesson">
+		update lesson 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="title != null and title != ''">title = #{title},</if>
+			<if test="downloadUrl != null and downloadUrl != ''">downloadUrl = #{downloadUrl},</if>
+			<if test="courseId != null and courseId != ''">courseId = #{courseId},</if>
+			<if test="time != null and time != ''">time = #{time},</if>
+		</trim>
+		<where>id = #{id}</where>
+	</update>
+	
+	<select id="findById" resultMap="lessonResultMap" parameterType="String" >
+		select <include refid="table_columns" />
+		from lesson
+		where id = #{id}
+	</select>
+	
+	<select id="queryAll" resultMap="lessonResultMap">
+		select <include refid="table_columns" /> 
+		from lesson
+	</select>
+	
+	<!-- 使用like用法：columnName like concat('%',#columnName#,'%') -->
+	<sql id="page_where">
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="title != null and title != ''">and title = #{title}</if>
+			<if test="downloadUrl != null and downloadUrl != ''">and downloadUrl = #{downloadUrl}</if>
+			<if test="courseId != null and courseId != ''">and courseId = #{courseId}</if>
+			<if test="time != null and time != ''">and time = #{time}</if>
+		</trim>
+	</sql>
+	
+	<select id="page" resultMap="lessonResultMap" parameterType="com.xukaiqiang.blog.model.lesson.Lesson">
+		select <include refid="table_columns" />
+		from lesson
+		<include refid="page_where" />
+		limit #{firstIndex},#{pageSize}
+	</select>
+	
+	<select id="pageCount" resultType="int" parameterType="com.xukaiqiang.blog.model.lesson.Lesson">
+		select count(id) from lesson
+		<include refid="page_where" />
+	</select>
+	
+	<!-- 其他自定义SQL -->
+	
+</mapper>

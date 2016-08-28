@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xukaiqiang.blog.course.mapper.CourseMapper">
+	<resultMap type="com.xukaiqiang.blog.model.course.Course" id="courseResultMap">
+		<result property="id" column="id" />
+		<result property="title" column="title" />
+		<result property="pictureSrc" column="pictureSrc" />
+		<result property="userId" column="userId" />
+		<result property="lessonPeriod" column="lessonPeriod" />
+		<result property="createTime" column="createTime" />
+		<result property="applicableUser" column="applicableUser" />
+	</resultMap>
+	
+	<sql id="table_columns">
+		id,
+		title,
+		pictureSrc,
+		userId,
+		lessonPeriod,
+		createTime,
+		applicableUser
+    </sql>
+	<sql id="entity_properties">
+		#{id},
+		#{title},
+		#{pictureSrc},
+		#{userId},
+		#{lessonPeriod},
+		#{createTime},
+		#{applicableUser}
+	</sql>
+	<sql id="batch_entity_properties">
+		#{item.id},
+		#{item.title},
+		#{item.pictureSrc},
+		#{item.userId},
+		#{item.lessonPeriod},
+		#{item.createTime},
+		#{item.applicableUser}
+	</sql>
+	
+	<!-- 适用于主键自增类型 -->
+	<insert id="insert" parameterType="com.xukaiqiang.blog.model.course.Course" useGeneratedKeys="true" keyProperty="id">
+		insert into course( <include refid="table_columns" /> ) 
+		values ( <include refid="entity_properties" /> )
+	</insert>
+	
+	<!-- 批量添加 适用于主键自增类型  不支持返回主键-->
+	<insert id="batchInsert" parameterType="java.util.List" useGeneratedKeys="true">
+		insert into course( <include refid="table_columns" /> ) 
+		values 
+		<foreach item="item" collection="list" separator="," >
+			( <include refid="entity_properties" /> )
+		</foreach>
+	</insert>
+	
+	<!--根据主键删除 -->
+	<delete id="deleteById">
+		delete from tbl_users
+		where id = #{id}
+	</delete>
+	
+	<!-- 根据ID批量删除 -->
+	<delete id="deleteByIds">
+		delete from course
+		where id in
+		<foreach item="item" collection="array" open="(" separator="," close=")">
+			#{item}
+		</foreach>
+	</delete>
+	
+	<update id="update" parameterType="com.xukaiqiang.blog.model.course.Course">
+		update course 
+		<trim prefix="set" suffixOverrides=",">
+			<if test="title != null and title != ''">title = #{title},</if>
+			<if test="pictureSrc != null and pictureSrc != ''">pictureSrc = #{pictureSrc},</if>
+			<if test="userId != null and userId != ''">userId = #{userId},</if>
+			<if test="lessonPeriod != null and lessonPeriod != ''">lessonPeriod = #{lessonPeriod},</if>
+			<if test="createTime != null and createTime != ''">createTime = #{createTime},</if>
+			<if test="applicableUser != null and applicableUser != ''">applicableUser = #{applicableUser},</if>
+		</trim>
+		<where>id = #{id}</where>
+	</update>
+	
+	<select id="findById" resultMap="courseResultMap" parameterType="String" >
+		select <include refid="table_columns" />
+		from course
+		where id = #{id}
+	</select>
+	
+	<select id="queryAll" resultMap="courseResultMap">
+		select <include refid="table_columns" /> 
+		from course
+	</select>
+	
+	<!-- 使用like用法：columnName like concat('%',#columnName#,'%') -->
+	<sql id="page_where">
+		<trim prefix="where" prefixOverrides="and | or ">
+			<if test="title != null and title != ''">and title = #{title}</if>
+			<if test="pictureSrc != null and pictureSrc != ''">and pictureSrc = #{pictureSrc}</if>
+			<if test="userId != null and userId != ''">and userId = #{userId}</if>
+			<if test="lessonPeriod != null and lessonPeriod != ''">and lessonPeriod = #{lessonPeriod}</if>
+			<if test="createTime != null and createTime != ''">and createTime = #{createTime}</if>
+			<if test="applicableUser != null and applicableUser != ''">and applicableUser = #{applicableUser}</if>
+		</trim>
+	</sql>
+	
+	<select id="page" resultMap="courseResultMap" parameterType="com.xukaiqiang.blog.model.course.Course">
+		select <include refid="table_columns" />
+		from course
+		<include refid="page_where" />
+		limit #{firstIndex},#{pageSize}
+	</select>
+	
+	<select id="pageCount" resultType="int" parameterType="com.xukaiqiang.blog.model.course.Course">
+		select count(id) from course
+		<include refid="page_where" />
+	</select>
+	
+	<!-- 其他自定义SQL -->
+	
+</mapper>

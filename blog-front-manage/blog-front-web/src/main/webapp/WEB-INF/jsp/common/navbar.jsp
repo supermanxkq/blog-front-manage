@@ -35,6 +35,7 @@
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1" >
 		      <ul class="nav navbar-nav">
 		        <li><a href="<%=rootPath %>"><font color="black"><strong>博客</strong></font></a></li>
+		        <li><a href="<%=rootPath %>"><font color="black"><strong>教学视频</strong></font></a></li>
 		      </ul>
 		      <form action="<%=rootPath %>/lucene/search.html" class="navbar-form navbar-right" role="search" method="post" onsubmit="return Index.checkForm();">
 		        <div class="form-group" >

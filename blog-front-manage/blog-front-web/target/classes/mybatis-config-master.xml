@@ -24,5 +24,8 @@
 		<mapper resource="com/xukaiqiang/tags/TagsMapper.xml" />
 		<mapper resource="com/xukaiqiang/articleTags/ArtileTagsMapper.xml" />
 		<mapper resource="com/xukaiqiang/comments/CommentsMapper.xml" />
+		<!-- 课程相关 -->
+		<mapper resource="com/xukaiqiang/lesson/LessonMapper.xml" />
+		<mapper resource="com/xukaiqiang/course/CourseMapper.xml" />
 	</mappers>
 </configuration>

@@ -119,7 +119,9 @@
 				com.xukaiqiang.blog.userdetail.mapper,
 				com.xukaiqiang.blog.tags.mapper,
 				com.xukaiqiang.blog.articletags.mapper,
-				com.xukaiqiang.blog.comments.mapper
+				com.xukaiqiang.blog.comments.mapper,
+				com.xukaiqiang.blog.course.mapper,
+				com.xukaiqiang.blog.lesson.mapper
 			</value>
 		</property>
 	</bean>
